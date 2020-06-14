@@ -20,12 +20,14 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/2.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'f)2tmee3&svfmx%n9ijqi0e2iv94k9-gk+bav+xbv6$u96-31l'
+SECRET_KEY = os.environ.get('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
+DEBUG_MODE = os.environ.get('DEBUG_MODE', 'on')
 DEBUG = True
-
-ALLOWED_HOSTS = []
+if DEBUG_MODE == 'OFF':
+    DEBUG = False
+ALLOWED_HOSTS = ['mharveeytodo.herokuapp.com', '127.0.0.1']
 
 
 # Application definition
@@ -119,4 +121,4 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
 STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'statifiles')
+STATIC_ROOT = os.path.join(BASE_DIR, 'todo/static/')
