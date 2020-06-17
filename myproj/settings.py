@@ -43,6 +43,7 @@ ALLOWED_HOSTS = ['mharveeytodo.herokuapp.com', '127.0.0.1']
 INSTALLED_APPS = [
     'todo.apps.TodoConfig',
     'users.apps.UsersConfig',
+    'crispy_forms',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -128,12 +129,13 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
-
+LOGIN_REDIRECT_URL = "todo-index"  # redirect to the homepage after login successful
+LOGIN_URL = "login"
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'todo/static/')
 
 MEDIA_URL = "/media/"
 MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 
-
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
 django_heroku.settings(locals())
