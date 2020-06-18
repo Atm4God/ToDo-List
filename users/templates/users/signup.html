@@ -1,30 +1,24 @@
 {% extends 'users/base.html' %}
 {% load static %}
 {% load widget_tweaks %}
-{% block title %} <title>Login</title> {% endblock %}
+{% block title %} <title>signup</title> {% endblock %}
 {% block content %}
     <!-- CONTENT
     ================================================== -->
     <section class="section-border border-primary">
-        {% if messages %}
-            {% for message in messages %}
-                <div class="alert alert-success">
-                    {{ message }}
-                </div>
-            {% endfor %}
-        {% endif %}
       <div class="container d-flex flex-column">
         <div class="row align-items-center justify-content-center no-gutters min-vh-100">
           <div class="col-8 col-md-6 col-lg-7 offset-md-1 order-md-2 mt-auto mt-md-0 pt-8 pb-4 py-md-11">
 
             <!-- Image -->
-            <img src="{% static 'users/illustration-2.png' %}" alt="..." class="img-fluid">
+            <img src="{% static 'users/illustration.png' %}" alt="..." class="img-fluid">
 
           </div>
           <div class="col-12 col-md-5 col-lg-4 order-md-1 mb-auto mb-md-0 pb-8 py-md-11">
+
             <!-- Heading -->
             <h1 class="mb-0 font-weight-bold text-center">
-              Login
+              Sign up
             </h1>
 
             <!-- Text -->
@@ -48,7 +42,6 @@
                 {% endif %}
                 {% for field in form.visible_fields %}
                     <div class="form-group">
-                    {{ field.label_tag }}
                     {% if form.is_bound %}
                         {% if field.errors %}
                             {% render_field field class="form-control is-invalid" %}
@@ -61,22 +54,22 @@
                             {% render_field field class="form-control is-valid" %}
                         {% endif %}
                     {% else %}
-                        {% render_field field class="form-control" placeholder=field.label %}
+                        {% render_field field class="form-control mb-5" %}
                     {% endif %}
-                    </div>
                 {% endfor %}
 
-              <!-- Submit -->
-              <button class="btn btn-block btn-primary mt-2" type="submit">
-                Login
-              </button>
-
+                      <!-- Submit -->
+                    <button class="btn btn-block btn-primary mt-2" type="submit">
+                        Sign up
+                    </button>
+                </div>
             </form>
 
             <!-- Text -->
             <p class="mb-0 font-size-sm text-center text-muted">
-              Don't have an account? <a href="{% url 'signup' %}">Signup</a>.
+              Already have an account? <a href="{% url 'login' %}">Log in</a>.
             </p>
+
           </div>
         </div> <!-- / .row -->
       </div> <!-- / .container -->

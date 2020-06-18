@@ -1,19 +1,125 @@
-{% extends "todo/base.html" %}
-{% load crispy_forms_filters %}
-{% block contents %}>
-    <h1>your info</h1>
-    <img src="{{ user.profile.pix.url }}"  >
-    <br>
-    {{user.username}}
-    <br>
-    {{ user.email }}
+{% extends "users/base.html" %}
+{% load widget_tweaks %}
+{% load static %}
 
-    <form method="POST" enctype="multipart/form-data">
-        {% csrf_token %}
-        <h1>update info</h1>
-        {{ u_form|crispy }}
-        {{ p_form|crispy }}
-        <button type="submit">update</button>
+{#    <h1>your info</h1>#}
+{#    <img src="{{ user.profile.pix.url }}"  >#}
+{#    <br>#}
+{#    {{user.username}}#}
+{#    <br>#}
+{#    {{ user.email }}#}
+{##}
+{#    <form method="POST" enctype="multipart/form-data">#}
+{#        {% csrf_token %}#}
+{#        <h1>update info</h1>#}
+{#        {{ u_form|crispy }}#}
+{#        {{ p_form|crispy }}#}
+{#        <button type="submit">update</button>#}
+{##}
+{#    </form>#}
 
-    </form>
+
+{% block content %}
+<div class="container rounded bg-white mt-5 mb-5">
+
+        <div class="row">
+                <div class="col-md-3 border-right">
+                    <div class="d-flex flex-column align-items-center text-center p-3 py-5">
+                        <img class="rounded-circle mt-5" src="{{ user.profile.pix.url }}">
+                        <span class="font-weight-bold">{{user.username}}</span>
+                        <span class="text-black-50">{{ user.email }}</span><span> </span>
+                    </div>
+                </div>
+                <div class="col-md-5 border-right">
+                    <div class="p-3 py-5">
+                        <div class="d-flex justify-content-between align-items-center mb-3">
+                            <h4 class="text-right">Profile Settings</h4>
+                        </div>
+
+                        <div class="row mt-3">
+                            <form class="mb-6" method="POST">
+                        {% csrf_token %}
+
+                        {% for hidden_field in u_form.hidden_fields %}
+                            {{ hidden_field }}
+                        {% endfor %}
+                        {% if u_form.non_field_errors %}
+                            <div class="alert alert-danger" role="alert">
+                                {% for error in u_form.non_field_errors %}
+                                    {{ error }}
+                                {% endfor %}
+                            </div>
+                        {% endif %}
+                        {% for field in u_form.visible_fields %}
+                            {{ field.label_tag }}
+                            <div class="form-group">
+                            {% if u_form.is_bound %}
+                                {% if field.errors %}
+                                    {% render_field field class="form-control is-invalid" %}
+                                    {% for error in field.errors %}
+                                        <div class="invalid-feedback">
+                                            {{ error }}
+                                        </div>
+                                    {% endfor %}
+                                {% else %}
+                                    {% render_field field class="form-control is-valid" %}
+                                {% endif %}
+                            {% else %}
+                                {% render_field field class="form-control mb-5" %}
+                            {% endif %}
+                        {% endfor %}
+
+                        {% for hidden_field in p_form.hidden_fields %}
+                            {{ hidden_field }}
+                        {% endfor %}
+                        {% if p_form.non_field_errors %}
+                            <div class="alert alert-danger" role="alert">
+                                {% for error in p_form.non_field_errors %}
+                                    {{ error }}
+                                {% endfor %}
+                            </div>
+                        {% endif %}
+                        {% for field in p_form.visible_fields %}
+                            <div class="form-group">
+                            {% if p_form.is_bound %}
+                                {% if field.errors %}
+                                    {% render_field field class="form-control is-invalid" %}
+                                    {% for error in field.errors %}
+                                        <div class="invalid-feedback">
+                                            {{ error }}
+                                        </div>
+                                    {% endfor %}
+                                {% else %}
+                                    {% render_field field class="form-control is-valid" %}
+                                {% endif %}
+                            {% else %}
+                                {% render_field field class="form-control mb-5" %}
+                            {% endif %}
+                        {% endfor %}
+
+                              <!-- Submit -->
+                            <button class="btn btn-block btn-primary mt-2" type="submit">
+                                Sign up
+                            </button>
+                        </div>
+                    </form>
+
+
+
+
+
+                <div class="col-md-4">
+        {#            <div class="p-3 py-5">#}
+        {#                <div class="d-flex justify-content-between align-items-center experience"><span>Edit Experience</span><span class="border px-3 p-1 add-experience"><i class="fa fa-plus"></i>&nbsp;Experience</span></div><br>#}
+        {#                <div class="col-md-12"><label class="labels">Experience in Designing</label><input type="text" class="form-control" placeholder="experience" value=""></div> <br>#}
+        {#                <div class="col-md-12"><label class="labels">Additional Details</label><input type="text" class="form-control" placeholder="additional details" value=""></div>#}
+        {#            </div>#}
+                </div>
+            </div>
+        </div>
+        </div>
+        </div>
+        </div>
+</div>
+
 {% endblock %}

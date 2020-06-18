@@ -1,0 +1,75 @@
+{% load static %}
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{% static 'todo/styles.css' %}">
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Libs CSS -->
+    <link rel="stylesheet" href="{% static 'users/css/feather.css' %}">
+    <link rel="stylesheet" href="{% static 'users/css/jquery.css' %}">
+    <link rel="stylesheet" href="{% static 'users/css/aos.css' %}">
+    <link rel="stylesheet" href="{% static 'users/css/choices.css' %}">
+    <link rel="stylesheet" href="{% static 'users/css/flickity-fade.css' %}">
+    <link rel="stylesheet" href="{% static 'users/css/flickity.css' %}">
+    <link rel="stylesheet" href="{% static 'users/css/vs2015.css' %}">
+    <link rel="stylesheet" href="{% static 'users/css/jarallax.css' %}">
+    <link rel="stylesheet" href="{% static 'users/css/quill.css' %}">
+
+    <!-- Map -->
+    <link href="{% static 'users/css/mapbox-gl.css' %}" rel="stylesheet">
+
+    <!-- Theme CSS -->
+    <link rel="stylesheet" href="{% static 'users/css/theme.css' %}">
+
+    {% block title %}
+    {% endblock %}
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script type="text/javascript" async="" src="{% static 'users/jsf/analytics.js' %}"></script>
+    <script async="" src="{% static 'users/js' %}"></script>
+    <script>window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}gtag("js", new Date());gtag("config", "UA-156446909-2");</script>
+
+  </head>
+  <body data-aos-easing="ease-out-quad" data-aos-duration="700" data-aos-delay="0" data-gr-c-s-loaded="true">
+  {% block content %}
+  {% endblock %}
+<!-- JAVASCRIPT
+    ================================================== -->
+    <!-- Libs JS -->
+    <script src="{% static 'users/jsf/jquery_002.js' %}"></script>
+    <script src="{% static 'users/jsf/bootstrap.js' %}"></script>
+    <script src="{% static 'users/jsf/jquery.js' %}"></script>
+    <script src="{% static 'users/jsf/aos.js' %}"></script>
+    <script src="{% static 'users/jsf/choices.js' %}"></script>
+    <script src="{% static 'users/jsf/countUp.js' %}"></script>
+    <script src="{% static 'users/jsf/dropzone.js' %}"></script>
+    <script src="{% static 'users/jsf/flickity.js' %}"></script>
+    <script src="{% static 'users/jsf/flickity-fade.js' %}"></script>
+    <script src="{% static 'users/jsf/highlight.js' %}"></script>
+    <script src="{% static 'users/jsf/imagesloaded.js' %}"></script>
+    <script src="{% static 'users/jsf/isotope.js' %}"></script>
+    <script src="{% static 'users/jsf/jarallax.js' %}"></script>
+    <script src="{% static 'users/jsf/jarallax-video.js' %}"></script>
+    <script src="{% static 'users/jsf/jarallax-element.js' %}"></script>
+    <script src="{% static 'users/jsf/quill.js' %}"></script>
+    <script src="{% static 'users/jsf/smooth-scroll.js' %}"></script>
+    <script src="{% static 'users/jsf/typed.js' %}' %}"></script>
+
+    <!-- Map -->
+    <script src="{% static 'users/jsf/mapbox-gl.js' %}"></script>
+
+    <!-- Theme JS -->
+    <script src="{% static 'users/jsf/theme.js' %}"></script>
+    <!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<!-- Popper JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<!-- Latest compiled JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+</body>
+</html>
