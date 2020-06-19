@@ -2,26 +2,16 @@
 {% load widget_tweaks %}
 {% load static %}
 
-{#    <h1>your info</h1>#}
-{#    <img src="{{ user.profile.pix.url }}"  >#}
-{#    <br>#}
-{#    {{user.username}}#}
-{#    <br>#}
-{#    {{ user.email }}#}
-{##}
-{#    <form method="POST" enctype="multipart/form-data">#}
-{#        {% csrf_token %}#}
-{#        <h1>update info</h1>#}
-{#        {{ u_form|crispy }}#}
-{#        {{ p_form|crispy }}#}
-{#        <button type="submit">update</button>#}
-{##}
-{#    </form>#}
-
-
 {% block content %}
-<div class="container rounded bg-white mt-5 mb-5">
-
+      <body data-aos-easing="ease-out-quad" data-aos-duration="700" data-aos-delay="0" data-gr-c-s-loaded="true">
+        <div class="container rounded bg-white mt-5 mb-5">
+        {% if messages %}
+            {% for message in messages %}
+                <div class="alert alert-success">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        {% endif %}
         <div class="row">
                 <div class="col-md-3 border-right">
                     <div class="d-flex flex-column align-items-center text-center p-3 py-5">
@@ -33,7 +23,7 @@
                 <div class="col-md-5 border-right">
                     <div class="p-3 py-5">
                         <div class="d-flex justify-content-between align-items-center mb-3">
-                            <h4 class="text-right">Profile Settings</h4>
+                            <h2 class="text-center">Profile Settings</h2>
                         </div>
 
                         <div class="row mt-3">
@@ -99,7 +89,7 @@
 
                               <!-- Submit -->
                             <button class="btn btn-block btn-primary mt-2" type="submit">
-                                Sign up
+                                Update Profile
                             </button>
                         </div>
                     </form>
@@ -120,6 +110,5 @@
         </div>
         </div>
         </div>
-</div>
-
+      </body>
 {% endblock %}

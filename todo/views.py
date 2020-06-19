@@ -12,7 +12,7 @@ from .forms import TodoForm
 @login_required()
 def index(request):
     # todo_list = Todo.objects.order_by('id')
-    todo_list = request.user.todo_list.all()
+    todo_list = request.user.todo_list.all().order_by('id')
     form = TodoForm()
     context = {'todo_list': todo_list, 'form': form}
 
