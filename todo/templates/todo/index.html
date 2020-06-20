@@ -42,7 +42,7 @@
                                 {% if todo_list %}
 								<div class="btn-group">
 									<a href="{% url 'delete_complete' %}">
-                                        <button type="button" class="btn btn-warning">
+                                        <button type="button" class="btn btn-warning mb-2">
 										    <i class="glyphicon glyphicon-trash"></i> DELETE COMPLETED
 									    </button>
                                     </a>
@@ -59,7 +59,7 @@
 					</div>
 
 					<ul class="list-group t20">
-						 <h3>List:</h3>
+						 <h3 class="border-top">List:</h3>
                     {% if todo_list %}
                         <p>>> click on a todo to strike it out</p>
     				    {% for todo in todo_list %}
