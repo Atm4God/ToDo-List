@@ -1,32 +1,73 @@
-{% extends "users/base.html" %}
+{#{% extends "users/base.html" %}#}
 {% load widget_tweaks %}
 {% load static %}
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Profile</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="{% static 'todo/styles.css' %}">
+    <link rel="stylesheet" href="{% static 'users/css/styles.css' %}">
 
-{% block content %}
-      <body data-aos-easing="ease-out-quad" data-aos-duration="700" data-aos-delay="0" data-gr-c-s-loaded="true">
-        <div class="container rounded bg-white mt-5 mb-5">
+</head>
+<body>
+
+
+       <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <img src="{% static 'todo/todo.png' %}" class="ml-5" width="30" height="30" alt="Todo icon"><span id="light">&nbsp; Todo</span>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
+            aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNavDropdown">
+  <ul class="navbar-nav ml-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="{% url 'todo-index' %}"><i class="fa fa-fw fa-home"></i>Home <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'profile' %}"><i class="fa fa-fw fa-user"></i>profile</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'logout' %}"><i class="fa fa-fw fa-user"></i>logout</a>
+      </li>
+
+    </ul>
+  </div>
+</nav>
+             <div class="row">
+
+        <div class="container rounded  mb-5">
         {% if messages %}
-            {% for message in messages %}
-                <div class="alert alert-success">
-                    {{ message }}
-                </div>
-            {% endfor %}
-        {% endif %}
-        <div class="row">
-                <div class="col-md-3 border-right">
-                    <div class="d-flex flex-column align-items-center text-center p-3 py-5">
+                        {% for message in messages %}
+                            <div class="alert alert-{{message.tags}} alert-dismissible" role="alert">
+                                {{ message }}
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                        {% endfor %}
+                      {% endif %}
+        <div class="row mt-10" id="light">
+                <div class="col-md-4 border-right">
+                    <div class="d-flex flex-column align-items-center text-center p-3 py-5" >
                         <img class="rounded-circle mt-5" src="{{ user.profile.pix.url }}">
                         <span class="font-weight-bold">{{user.username}}</span>
                         <span class="text-black-50">{{ user.email }}</span><span> </span>
                     </div>
                 </div>
-                <div class="col-md-5 border-right">
+                <div class="col-md-8">
                     <div class="p-3 py-5">
                         <div class="d-flex justify-content-between align-items-center mb-3">
                             <h2 class="text-center">Profile Settings</h2>
                         </div>
 
-                        <div class="row mt-3">
+                        <div class="row mt-3 ml-5">
                             <form class="mb-6" method="POST">
                         {% csrf_token %}
 
@@ -110,5 +151,15 @@
         </div>
         </div>
         </div>
-      </body>
-{% endblock %}
+      </div>
+     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous">
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous">
+</script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous">
+</script>
+     </body>
+</html>
