@@ -32,7 +32,7 @@ SECRET_KEY = os.environ['SECRET_KEY']
 
 # SECURITY WARNING: don't run with debug turned on in production!
 # DEBUG_MODE = os.environ.get('DEBUG_MODE', 'OFF')
-DEBUG = False
+DEBUG = True
 # if DEBUG_MODE == 'OFF':
 #     DEBUG = False
 ALLOWED_HOSTS = ['mharveeytodo.herokuapp.com', '127.0.0.1']
