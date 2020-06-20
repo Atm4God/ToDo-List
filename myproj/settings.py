@@ -13,6 +13,8 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 import os
 import django_heroku
 import dotenv  # <- New
+import socket
+
 
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -31,11 +33,15 @@ if os.path.isfile(dotenv_file):
 SECRET_KEY = os.environ['SECRET_KEY']
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG_MODE = os.environ.get('DEBUG_MODE', 'on')
-DEBUG = True
-if DEBUG_MODE == 'OFF':
+
+if socket.gethostname() == "herokuapp.com":
     DEBUG = False
-ALLOWED_HOSTS = ['mharveeytodo.herokuapp.com', '127.0.0.1']
+    ALLOWED_HOSTS = ["mharveeytodo.herokuapp.com",]
+else:
+    DEBUG = True
+    ALLOWED_HOSTS = ["localhost", "127.0.0.1",]
+# DEBUG = False
+# ALLOWED_HOSTS = ['mharveeytodo.herokuapp.com', '127.0.0.1']
 
 
 # Application definition
