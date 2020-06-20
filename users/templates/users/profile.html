@@ -61,13 +61,13 @@
                         <span class="text-black-50">{{ user.email }}</span><span> </span>
                     </div>
                 </div>
-                <div class="col-md-8">
+                <div class="col-lg-6">
                     <div class="p-3 py-5">
                         <div class="d-flex justify-content-between align-items-center mb-3">
                             <h2 class="text-center">Profile Settings</h2>
                         </div>
 
-                        <div class="row mt-3 ml-5">
+                        <div class="row mt-3 ">
                             <form class="mb-6" method="POST">
                         {% csrf_token %}
 
@@ -96,7 +96,7 @@
                                     {% render_field field class="form-control is-valid" %}
                                 {% endif %}
                             {% else %}
-                                {% render_field field class="form-control mb-5" %}
+                                {% render_field field class="form-control m-2" %}
                             {% endif %}
                         {% endfor %}
 
@@ -124,7 +124,7 @@
                                     {% render_field field class="form-control is-valid" %}
                                 {% endif %}
                             {% else %}
-                                {% render_field field class="form-control mb-5" %}
+                                {% render_field field class="form-control mb-5 m-2" %}
                             {% endif %}
                         {% endfor %}
 
