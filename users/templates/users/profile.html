@@ -17,140 +17,122 @@
 
 </head>
 <body>
-
-
-       <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <img src="{% static 'todo/todo.png' %}" class="ml-5" width="30" height="30" alt="Todo icon"><span id="light">&nbsp; Todo</span>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
             aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
-  </button>
-  <div class="collapse navbar-collapse" id="navbarNavDropdown">
-  <ul class="navbar-nav ml-auto">
-      <li class="nav-item active">
-        <a class="nav-link" href="{% url 'todo-index' %}"><i class="fa fa-fw fa-home"></i>Home <span class="sr-only">(current)</span></a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="{% url 'profile' %}"><i class="fa fa-fw fa-user"></i>profile</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="{% url 'logout' %}"><i class="fa fa-fw fa-user"></i>logout</a>
-      </li>
-
-    </ul>
-  </div>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item active">
+                <a class="nav-link" href="{% url 'todo-index' %}"><i class="fa fa-fw fa-home"></i>Home <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'profile' %}"><i class="fa fa-fw fa-user"></i>profile</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'logout' %}"><i class="fa fa-fw fa-user"></i>logout</a>
+            </li>
+        </ul>
+    </div>
 </nav>
-             <div class="row">
-
-        <div class="container rounded  mb-5">
+<div class="row">
+    <div class="container rounded  mb-5">
         {% if messages %}
-                        {% for message in messages %}
-                            <div class="alert alert-{{message.tags}} alert-dismissible" role="alert">
-                                {{ message }}
-                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
-                        {% endfor %}
-                      {% endif %}
-        <div class="row mt-10" id="light">
-                <div class="col-md-4 border-right">
-                    <div class="d-flex flex-column align-items-center text-center p-3 py-5" >
-                        <img class="rounded-circle mt-5" src="{{ user.profile.pix.url }}">
-                        <span class="font-weight-bold">{{user.username}}</span>
-                        <span class="text-black-50">{{ user.email }}</span><span> </span>
-                    </div>
+            {% for message in messages %}
+                <div class="alert alert-{{message.tags}} alert-dismissible" role="alert">
+                    {{ message }}
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
                 </div>
-                <div class="col-lg-6">
-                    <div class="p-3 py-5">
-                        <div class="d-flex justify-content-between align-items-center mb-3">
-                            <h2 class="text-center">Profile Settings</h2>
-                        </div>
-
-                        <div class="row mt-3 ">
-                            <form class="mb-6" method="POST">
-                        {% csrf_token %}
-
-                        {% for hidden_field in u_form.hidden_fields %}
-                            {{ hidden_field }}
-                        {% endfor %}
-                        {% if u_form.non_field_errors %}
-                            <div class="alert alert-danger" role="alert">
-                                {% for error in u_form.non_field_errors %}
-                                    {{ error }}
-                                {% endfor %}
-                            </div>
-                        {% endif %}
-                        {% for field in u_form.visible_fields %}
-                            {{ field.label_tag }}
-                            <div class="form-group">
-                            {% if u_form.is_bound %}
-                                {% if field.errors %}
-                                    {% render_field field class="form-control is-invalid" %}
-                                    {% for error in field.errors %}
-                                        <div class="invalid-feedback">
-                                            {{ error }}
-                                        </div>
+            {% endfor %}
+        {% endif %}
+        <div class="row mt-10" id="light">
+            <div class="col-md-4 border-right">
+                <div class="d-flex flex-column align-items-center text-center p-3 py-5" >
+                    <img class="rounded-circle mt-5" src="{{ user.profile.pix.url }}">
+                    <span class="font-weight-bold">{{user.username}}</span>
+                    <span class="text-black-50">{{ user.email }}</span><span> </span>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="p-3 py-5">
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <h2 class="text-center">Profile Settings</h2>
+                    </div>
+                    <div class="row mt-3 ">
+                        <form class="mb-6" method="POST">
+                            {% csrf_token %}
+                            {% for hidden_field in u_form.hidden_fields %}
+                                {{ hidden_field }}
+                            {% endfor %}
+                            {% if u_form.non_field_errors %}
+                                <div class="alert alert-danger" role="alert">
+                                    {% for error in u_form.non_field_errors %}
+                                        {{ error }}
                                     {% endfor %}
-                                {% else %}
-                                    {% render_field field class="form-control is-valid" %}
-                                {% endif %}
-                            {% else %}
-                                {% render_field field class="form-control m-2" %}
+                                </div>
                             {% endif %}
-                        {% endfor %}
-
-                        {% for hidden_field in p_form.hidden_fields %}
-                            {{ hidden_field }}
-                        {% endfor %}
-                        {% if p_form.non_field_errors %}
-                            <div class="alert alert-danger" role="alert">
-                                {% for error in p_form.non_field_errors %}
-                                    {{ error }}
-                                {% endfor %}
-                            </div>
-                        {% endif %}
-                        {% for field in p_form.visible_fields %}
-                            <div class="form-group">
-                            {% if p_form.is_bound %}
-                                {% if field.errors %}
-                                    {% render_field field class="form-control is-invalid" %}
-                                    {% for error in field.errors %}
-                                        <div class="invalid-feedback">
-                                            {{ error }}
-                                        </div>
+                            {% for field in u_form.visible_fields %}
+                                {{ field.label_tag }}
+                                <div class="form-group">
+                                {% if u_form.is_bound %}
+                                    {% if field.errors %}
+                                        {% render_field field class="form-control is-invalid" %}
+                                        {% for error in field.errors %}
+                                            <div class="invalid-feedback">
+                                                {{ error }}
+                                            </div>
+                                        {% endfor %}
+                                    {% else %}
+                                        {% render_field field class="form-control is-valid" %}
+                                    {% endif %}
+                                {% else %}
+                                    {% render_field field class="form-control m-2" %}
+                                {% endif %}
+                            {% endfor %}
+                            {% for hidden_field in p_form.hidden_fields %}
+                                {{ hidden_field }}
+                            {% endfor %}
+                            {% if p_form.non_field_errors %}
+                                <div class="alert alert-danger" role="alert">
+                                    {% for error in p_form.non_field_errors %}
+                                        {{ error }}
                                     {% endfor %}
-                                {% else %}
-                                    {% render_field field class="form-control is-valid" %}
-                                {% endif %}
-                            {% else %}
-                                {% render_field field class="form-control mb-5 m-2" %}
+                                </div>
                             {% endif %}
-                        {% endfor %}
-
+                            {% for field in p_form.visible_fields %}
+                                <div class="form-group">
+                                {% if p_form.is_bound %}
+                                    {% if field.errors %}
+                                        {% render_field field class="form-control is-invalid" %}
+                                        {% for error in field.errors %}
+                                            <div class="invalid-feedback">
+                                                {{ error }}
+                                            </div>
+                                        {% endfor %}
+                                    {% else %}
+                                        {% render_field field class="form-control is-valid" %}
+                                    {% endif %}
+                                {% else %}
+                                    {% render_field field class="form-control mb-5 m-2" %}
+                                {% endif %}
+                                </div>
+                            {% endfor %}
                               <!-- Submit -->
                             <button class="btn btn-block btn-primary mt-2" type="submit">
                                 Update Profile
                             </button>
-                        </div>
-                    </form>
-
-
-
-
-
-        {#            <div class="p-3 py-5">#}
-        {#                <div class="d-flex justify-content-between align-items-center experience"><span>Edit Experience</span><span class="border px-3 p-1 add-experience"><i class="fa fa-plus"></i>&nbsp;Experience</span></div><br>#}
-        {#                <div class="col-md-12"><label class="labels">Experience in Designing</label><input type="text" class="form-control" placeholder="experience" value=""></div> <br>#}
-        {#                <div class="col-md-12"><label class="labels">Additional Details</label><input type="text" class="form-control" placeholder="additional details" value=""></div>#}
-        {#            </div>#}
+                        </form>
+                    </div>
+                </div>
             </div>
         </div>
-        </div>
-        </div>
-        </div>
-      </div>
-     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+    </div>
+</div>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
         integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous">
 </script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
@@ -159,5 +141,5 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
         integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous">
 </script>
-     </body>
+</body>
 </html>
