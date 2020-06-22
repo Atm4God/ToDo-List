@@ -63,14 +63,17 @@
                         <h2 class="text-center">Profile Settings</h2>
                     </div>
                     <div class="row mt-3 ">
-                        <form class="mb-6" method="POST">
+                        <form class="mb-6" method="POST" enctype="multipart/form-data">
                             {% csrf_token %}
                             {% for hidden_field in u_form.hidden_fields %}
                                 {{ hidden_field }}
                             {% endfor %}
-                            {% if u_form.non_field_errors %}
+                            {% if u_form.non_field_errors  or p_form.non_field_errors %}
                                 <div class="alert alert-danger" role="alert">
                                     {% for error in u_form.non_field_errors %}
+                                        {{ error }}
+                                    {% endfor %}
+                                    {% for error in p_form.non_field_errors %}
                                         {{ error }}
                                     {% endfor %}
                                 </div>
@@ -93,16 +96,6 @@
                                     {% render_field field class="form-control m-2" %}
                                 {% endif %}
                             {% endfor %}
-                            {% for hidden_field in p_form.hidden_fields %}
-                                {{ hidden_field }}
-                            {% endfor %}
-                            {% if p_form.non_field_errors %}
-                                <div class="alert alert-danger" role="alert">
-                                    {% for error in p_form.non_field_errors %}
-                                        {{ error }}
-                                    {% endfor %}
-                                </div>
-                            {% endif %}
                             {% for field in p_form.visible_fields %}
                                 <div class="form-group">
                                 {% if p_form.is_bound %}
@@ -121,6 +114,7 @@
                                 {% endif %}
                                 </div>
                             {% endfor %}
+
                               <!-- Submit -->
                             <button class="btn btn-block btn-primary mt-2" type="submit">
                                 Update Profile
