@@ -34,14 +34,9 @@ SECRET_KEY = os.environ['SECRET_KEY']
 
 # SECURITY WARNING: don't run with debug turned on in production!
 
-if socket.gethostname() == "herokuapp.com":
-    DEBUG = False
-    ALLOWED_HOSTS = ["mharveeytodo.herokuapp.com",]
-else:
-    DEBUG = True
-    ALLOWED_HOSTS = ["localhost", "127.0.0.1",]
+DEBUG = (os.environ.get('DEBUG_VALUE') == 'True')
+ALLOWED_HOSTS = ['mharveeytodo.herokuapp.com', '127.0.0.1']
 # DEBUG = False
-# ALLOWED_HOSTS = ['mharveeytodo.herokuapp.com', '127.0.0.1']
 
 
 # Application definition
